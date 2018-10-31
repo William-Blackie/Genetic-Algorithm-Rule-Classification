@@ -6,31 +6,31 @@ class Individual:
     fitness = None
     ID = None
 
-    def __init__(self, ID):
+    def __init__(self, id):
         self.genes
         self.fitness
-        self.ID = ID
+        self.ID = id
 
     def __str__(self):
-        return "ID: %s\nFitness:  %s\nGenes: %s" % (self.ID, self.fitness, self.genes)
+        return "ID: %s Fitness:  %s Genes: %s" % (self.ID, self.fitness, self.genes)
 
-    def CalcFitness(self):
-        totalFitness = 0
+    def calculate_fitness(self):
+        total_fitness = 0
 
         for value in self.genes:
-            totalFitness += value
-            self.fitness = totalFitness
-        return totalFitness
+            total_fitness += value
 
-    def CreateGenes(self, geneLength):
-        tempGenes = []
-        currentGene = 0
+        self.fitness = total_fitness
+        return total_fitness
 
+    def create_genes(self, gene_length):
+        temp_genes = []
+        current_gene = 0
 
-        while currentGene < geneLength:
-            tempGenes.append(random.randint(0,1))
-            currentGene += 1
-        self.genes = tempGenes
+        while current_gene < gene_length:
+            temp_genes.append(random.randint(0, 1))
+            current_gene += 1
+        self.genes = temp_genes
 
     def setup_individual(self, genes, fitness):
         self.genes = genes
