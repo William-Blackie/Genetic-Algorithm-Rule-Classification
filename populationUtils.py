@@ -6,7 +6,7 @@ import copy
 class PopulationUtils:
 
     def __init__(self): # TODO maybe make this so main sets this.
-        self.mutation_rate = 0.99863
+        self.mutation_rate = 0.99863 #0.9979719999999992 # 0.99863 old mutation value, new value from experiment
         self.crossover_rate = 0.30
         self.elite_population_number = 3
 
@@ -79,7 +79,7 @@ class PopulationUtils:
             new_pop.append(copy.deepcopy(elite))  # Append fittest individuals from old pop
 
         for pop in new_pop:
-            new_fitness += pop.calculate_fitness()  # Calculate fitness
+            new_fitness += pop.data_classification_fitness()  # Calculate fitness
 
         new_pop.sort(key=lambda x: x.fitness, reverse=True)  # Sort just for readability TODO remove unnecessary sort
 
@@ -102,8 +102,8 @@ class PopulationUtils:
         slice_end = 0
 
         while slice_start >= slice_end:
-            slice_start = random.randint(0, 49)
-            slice_end = random.randint(0, 49)
+            slice_start = random.randint(0, 59)
+            slice_end = random.randint(0, 59)
 
         # Slice and insert the new genes into parent
         for index in range(slice_start, slice_end):  # TODO make more pythonic fix naming conventions

@@ -1,9 +1,9 @@
-import individual
 import populationUtils
+import datautils
 
 # values for change
 populationNum = 50
-geneNumber = 50
+geneNumber = 60
 
 #Values for holding population info
 current_population = []
@@ -27,21 +27,16 @@ class Main:
 
         print("New fitness: %s Old fitness: %s Epoch: %s" % (new_fitness, old_fitness, epoch))
 
-        if new_fitness >= old_fitness: # Prevent fitness reduction
+        if new_fitness >= old_fitness: # Record the highest fitness seen
             old_fitness = new_fitness
 
-        if new_fitness >= populationNum * geneNumber:
+        if new_fitness >= (populationNum * geneNumber / 4):
             print("Finished in %s epochs\n final fitness %s" % (epoch, new_fitness))
             break
 
-        if epoch == 45:
-            print("Boop")
-
-
-        if epoch == 50:
-            print("beep")
-
-
         epoch += 1
+    #datautils = datautils.dataUtils()
+
+    #datautils.read_from_file()
 
 
