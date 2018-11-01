@@ -18,7 +18,7 @@ class PopulationUtils:
         while id_number < population_number:
             new_individual = individual.Individual(id_number)
             new_individual.create_genes(gene_number)
-            current_fitness += new_individual.calculate_fitness()
+            current_fitness += new_individual.data_classification_fitness()
             new_population.append(new_individual)
             id_number += 1
 

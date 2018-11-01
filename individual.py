@@ -25,16 +25,18 @@ class Individual:
 
     def data_classification_fitness(self):
         genes = self.genes
+        gene = ""
         rule_length = 4
         counter = 0
         gene_list = []
 
         for x in genes:
             counter += 1
-            gene = x
+            gene += str(x)
             if counter == rule_length:
-                gene_list.append(str(gene))
+                gene_list.append(gene)
                 counter = 0
+                gene = ""
 
         total_fitness = 0
 
@@ -54,6 +56,7 @@ class Individual:
             elif gene == "1111":
                 total_fitness += 1
 
+        self.fitness = total_fitness
         return total_fitness
 
 
