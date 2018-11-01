@@ -30,12 +30,17 @@ class Main:
         if new_fitness >= old_fitness: # Prevent fitness reduction
             old_fitness = new_fitness
 
-        if new_fitness == populationNum * geneNumber:
+        if new_fitness >= populationNum * geneNumber:
             print("Finished in %s epochs\n final fitness %s" % (epoch, new_fitness))
             break
 
+        if epoch == 45:
+            print("Boop")
+
+
         if epoch == 50:
-            break
+            print("beep")
+
 
         epoch += 1
 

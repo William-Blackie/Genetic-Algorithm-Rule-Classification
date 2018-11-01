@@ -5,47 +5,24 @@ import copy
 
 class PopulationUtils:
 
-    # Population rates
-    mutation_rate = 0.99
-    crossover_rate = 0.30
-
+    def __init__(self): # TODO maybe make this so main sets this.
+        self.mutation_rate = 0.99863
+        self.crossover_rate = 0.30
+        self.elite_population_number = 3
 
     @staticmethod
     def create_population(new_population, population_number, gene_number):
-        id = 0
+        id_number = 0
         current_fitness = 0
 
-        while id < population_number:
-            new_individual = individual.Individual(id)
+        while id_number < population_number:
+            new_individual = individual.Individual(id_number)
             new_individual.create_genes(gene_number)
             current_fitness += new_individual.calculate_fitness()
             new_population.append(new_individual)
-            id += 1
+            id_number += 1
 
         return current_fitness, new_population
-
-    def evaluate_population(self, old_population):
-        ID = 0
-        new_fitness = 0
-        new_population = []
-
-        while ID < 50:
-            
-            first_parent = old_population[random.randint(0, 49)]
-            second_parent = old_population[random.randint(0, 49)]
-            temp_individual = individual.Individual(ID)
-
-            temp_individual = self.tournament_selection(first_parent, second_parent, temp_individual)
-
-            temp_individual = self.single_bit_corssover(temp_individual)
-            temp_individual = self.single_point_mutation(temp_individual)
-
-            new_fitness += temp_individual.calculate_fitness()
-            new_population.append(temp_individual)
-            ID += 1
-
-        return new_population, new_fitness
-
 
     @staticmethod
     def tournament_selection(first_parent, second_parent, temp_individual):
@@ -65,13 +42,21 @@ class PopulationUtils:
         new_pop = []
         new_fitness = 0
         id_number = 0
+        elite_population = []
 
         population.sort(key=lambda x: x.fitness, reverse=True)  # Sort and save best fitness from last pop
-        best_individual = population[0]
+
+        index = self.elite_population_number
+
+        while index >= 0:
+            elite_population.append(copy.deepcopy(population[index]))
+            index -= 1
 
         while id_number < len(population):  # Tournament select new pop
             temp_individual = individual.Individual(id_number)
-            temp_individual = self.tournament_selection(copy.deepcopy(population[random.randint(0, 49)]), copy.deepcopy(population[random.randint(0, 49)]), temp_individual)
+            temp_individual = self.tournament_selection(copy.deepcopy(population[random.randint(0, 49)]),
+                                                        copy.deepcopy(population[random.randint(0, 49)]),
+                                                        temp_individual)
             new_pop.append(temp_individual)
             id_number += 1
 
@@ -81,22 +66,27 @@ class PopulationUtils:
             temp_individual = copy.deepcopy(new_pop[id_number])
             temp_individual = self.single_point_mutation(temp_individual)
             temp_individual = self.single_point_crossover(temp_individual, new_pop[id_number + 1])
-
-            new_fitness += temp_individual.calculate_fitness()
-            new_pop[id_number] = temp_individual
+            new_pop[id_number] = copy.deepcopy(temp_individual)
             id_number += 1
 
-        #population.sort(key=lambda x: x.fitness, reverse=True)
+        # Elite individuals added
         new_pop.sort(key=lambda x: x.fitness, reverse=True)
-        new_pop.pop(49)
-        new_pop.append(best_individual)
-        #new_pop[49] = best_individual  # Swap best candidate from last gen for worst of new.
-        new_pop.sort(key=lambda x: x.fitness, reverse=True)
-        new_fitness += best_individual.calculate_fitness()
+
+        for elite in elite_population:  # Remove least fit individuals
+            new_pop.pop()
+
+        for elite in elite_population:
+            new_pop.append(copy.deepcopy(elite))  # Append fittest individuals from old pop
+
+        for pop in new_pop:
+            new_fitness += pop.calculate_fitness()  # Calculate fitness
+
+        new_pop.sort(key=lambda x: x.fitness, reverse=True)  # Sort just for readability TODO remove unnecessary sort
+
         return new_pop, new_fitness
 
     @staticmethod
-    def roulete_selection(population):
+    def roulette_selection(population):
         total_fitness = sum([f.fitness for f in population])
         pick = random.uniform(0, total_fitness)
 
@@ -120,23 +110,16 @@ class PopulationUtils:
             first_parent.genes[index] = second_parent.genes[index]
         return first_parent
 
-    @staticmethod
-    def single_point_mutation(individual):
+    def single_point_mutation(self, individual): # TODO change name?
         index = 0
 
         while index < len(individual.genes):  # Mutate at each gene
             mutation_chance = random.uniform(0, 1)
 
-            if mutation_chance > 0.99:
+            if mutation_chance > self.mutation_rate:
                 if individual.genes[index] == 1:
                     individual.genes[index] = 0
                 else:
                     individual.genes[index] = 1
             index += 1
         return individual
-
-
-
-
-
-
