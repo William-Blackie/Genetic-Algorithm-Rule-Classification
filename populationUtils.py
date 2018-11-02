@@ -11,14 +11,14 @@ class PopulationUtils:
         self.elite_population_number = 3
 
     @staticmethod
-    def create_population(new_population, population_number, gene_number):
+    def create_population(new_population, population_number, gene_number, rule_list):
         id_number = 0
         current_fitness = 0
 
         while id_number < population_number:
             new_individual = individual.Individual(id_number)
             new_individual.create_genes(gene_number)
-            current_fitness += new_individual.data_classification_fitness()
+            current_fitness += new_individual.data_classification_fitness(rule_list)
             new_population.append(new_individual)
             id_number += 1
 
@@ -38,7 +38,7 @@ class PopulationUtils:
 
         return temp_individual
 
-    def high_fitness_evaluation(self, population):
+    def high_fitness_evaluation(self, population, rules):
         new_pop = []
         new_fitness = 0
         id_number = 0
@@ -79,7 +79,7 @@ class PopulationUtils:
             new_pop.append(copy.deepcopy(elite))  # Append fittest individuals from old pop
 
         for pop in new_pop:
-            new_fitness += pop.data_classification_fitness()  # Calculate fitness
+            new_fitness += pop.data_classification_fitness(rules)  # Calculate fitness
 
         new_pop.sort(key=lambda x: x.fitness, reverse=True)  # Sort just for readability TODO remove unnecessary sort
 
@@ -110,7 +110,7 @@ class PopulationUtils:
             first_parent.genes[index] = second_parent.genes[index]
         return first_parent
 
-    def single_point_mutation(self, individual): # TODO change name?
+    def single_point_mutation(self, individual):  # TODO change name?
         index = 0
 
         while index < len(individual.genes):  # Mutate at each gene

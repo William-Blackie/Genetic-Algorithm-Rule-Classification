@@ -17,7 +17,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Simple_GA$individual.coverage" NAME="individual Coverage Results" MODIFIED="1540918938203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Simple_GA$datautils.coverage" NAME="datautils Coverage Results" MODIFIED="1541091487547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Simple_GA$main.coverage" NAME="main Coverage Results" MODIFIED="1541104729031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Simple_GA$main.coverage" NAME="main Coverage Results" MODIFIED="1541162287670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="195698599">
@@ -27,40 +27,41 @@
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="3" />
+          <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.15" value="2" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.7" value="3" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="15" />
+          <entry key="project.opened" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="individual" value="1" />
-          <entry key="py" value="22" />
-          <entry key="tx" value="2" />
+          <entry key="py" value="24" />
+          <entry key="tx" value="3" />
           <entry key="txt" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="9" />
-          <entry key="Python" value="19" />
+          <entry key="PLAIN_TEXT" value="10" />
+          <entry key="Python" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="24" />
           <entry key="individual" value="54" />
-          <entry key="py" value="13692" />
+          <entry key="py" value="14212" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="164" />
-          <entry key="Python" value="13606" />
+          <entry key="Python" value="14126" />
         </counts>
       </usages-collector>
     </session>
@@ -72,11 +73,20 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/datautils.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="342">
-                  <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+                <state relative-caret-position="36">
+                  <caret line="2" column="33" lean-forward="true" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
                   <folding>
-                    <marker date="1541104729016" expanded="true" signature="21:26" ph="..." />
+                    <marker date="1541160992785" expanded="true" signature="19:24" ph="..." />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/data/data1.tx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="36">
+                  <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -91,22 +101,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/main.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="443">
-                  <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
-                  <folding>
-                    <marker date="1541104556755" expanded="true" signature="256:261" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/populationUtils.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="621">
-                  <caret line="46" selection-start-line="46" selection-end-line="46" />
+                <state relative-caret-position="360">
+                  <caret line="20" column="83" selection-start-line="20" selection-start-column="83" selection-end-line="20" selection-end-column="83" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
                   </folding>
@@ -117,14 +115,40 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
           <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/main.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="353">
+                  <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
+                  <folding>
+                    <element signature="e#0#22#0" expanded="true" />
+                    <marker date="1541162283277" expanded="true" signature="256:261" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/populationUtils.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="918">
-                  <caret line="51" column="38" lean-forward="true" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+                <state relative-caret-position="-1485">
+                  <caret line="16" selection-start-line="16" selection-end-line="16" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/individual.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="396">
+                  <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
+                  <folding>
+                    <marker date="1541160992773" expanded="true" signature="279:285" ph="..." />
+                    <marker date="1541160992773" expanded="true" signature="530:1053" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -156,10 +180,10 @@
         <option value="$PROJECT_DIR$/individual" />
         <option value="$PROJECT_DIR$/population_utils.py" />
         <option value="$PROJECT_DIR$/data_utils.py" />
-        <option value="$PROJECT_DIR$/populationUtils.py" />
-        <option value="$PROJECT_DIR$/individual.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/datautils.py" />
+        <option value="$PROJECT_DIR$/individual.py" />
+        <option value="$PROJECT_DIR$/populationUtils.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -334,14 +358,13 @@
     <frame x="67" y="32" width="1853" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10183639" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10294936" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Concurrent Activities Diagram" weight="0.32998884" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32998884" />
       <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4986088" visible="true" weight="0.26309922" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49916527" weight="0.6767001" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49916527" weight="0.41694537" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49972177" weight="0.32998884" />
@@ -351,6 +374,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50139123" side_tool="true" weight="0.32998884" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32998884" />
       <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.32998884" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -392,8 +416,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>33</line>
-          <option name="timeStamp" value="70" />
+          <line>37</line>
+          <option name="timeStamp" value="71" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -414,24 +438,6 @@
     <entry file="file://$PROJECT_DIR$/data/data3.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/data1.tx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/individual.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="47" column="32" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="32" />
-          <folding>
-            <marker date="1541103285114" expanded="true" signature="280:286" ph="..." />
-            <marker date="1541103285114" expanded="true" signature="520:1448" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python3/dist-packages/apport_python_hook.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -439,23 +445,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/individual.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+        <state relative-caret-position="396">
+          <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
           <folding>
-            <marker date="1541104556755" expanded="true" signature="256:261" ph="..." />
+            <marker date="1541160992773" expanded="true" signature="279:285" ph="..." />
+            <marker date="1541160992773" expanded="true" signature="530:1053" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/populationUtils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="-1485">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/data1.tx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -468,10 +482,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/datautils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+        <state relative-caret-position="36">
+          <caret line="2" column="33" lean-forward="true" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
           <folding>
-            <marker date="1541104729016" expanded="true" signature="21:26" ph="..." />
+            <marker date="1541160992785" expanded="true" signature="19:24" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+            <marker date="1541162283277" expanded="true" signature="256:261" ph="..." />
           </folding>
         </state>
       </provider>

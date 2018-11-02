@@ -1,6 +1,5 @@
 import random
 
-
 class Individual:
     genes = []
     fitness = None
@@ -23,10 +22,10 @@ class Individual:
         self.fitness = total_fitness
         return total_fitness
 
-    def data_classification_fitness(self):
+    def data_classification_fitness(self, rule_list):
         genes = self.genes
         gene = ""
-        rule_length = 4
+        rule_length = 6
         counter = 0
         gene_list = []
 
@@ -41,19 +40,7 @@ class Individual:
         total_fitness = 0
 
         for gene in gene_list:
-            if gene == "0011":
-                total_fitness += 1
-            elif gene == "0101":
-                total_fitness += 1
-            elif gene == "0110":
-                total_fitness += 1
-            elif gene == "1001":
-                total_fitness += 1
-            elif gene == "1010":
-                total_fitness += 1
-            elif gene == "1100":
-                total_fitness += 1
-            elif gene == "1111":
+            if gene in rule_list:
                 total_fitness += 1
 
         self.fitness = total_fitness

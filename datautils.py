@@ -1,34 +1,21 @@
-
-
 class dataUtils():
 
-    def read_from_file(self):
-        unique_file_data = {}
+    def read_from_file(self, path):
+        unique_file_data = []
         all_file_data = []
-        file = open('/home/will/PycharmProjects/untitled/data/data2.txt', 'r')
-        file.readline() # Remove header
+        file = open(path, 'r')
+        file.readline()  # Remove header
         for line in file:
-            line = line.strip() # Remove new line character
+            line = line.strip()  # Remove new line character
+            line = line.replace(" ", "")
             all_file_data.append(line)
         file.close()
 
-        rule = ""
-        member = 0
+        for temp_list in all_file_data:
+            if temp_list[len(temp_list) - 1] == '1' and temp_list not in unique_file_data:  # and temp_list not in unique_file_data:
+                unique_file_data.append(temp_list)  # Rule stored as string TODO maybe needed to think about something else
 
-        for x in all_file_data:
-            temp_list = x
-            if temp_list[0:6] not in unique_file_data:
-                unique_file_data[temp_list[0:6]] = int(temp_list[8])  # Rule stored as string TODO maybe needed to think about something else
-            else:
-                print("element: %s already found" % (temp_list[0:6]))
-        counter = 0
-        for k, v in unique_file_data.items():
-            if v == 1:
-                print("Rule: %s Value: %s" % (k, v))
-                counter += 1
-        print(counter)
-
-        print(unique_file_data)  # TODO remove this
+        print("Rules: %s" % (unique_file_data))
         return unique_file_data
 
 

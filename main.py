@@ -17,26 +17,27 @@ last_epoch_update = 0
 
 
 class Main:
-    # Setup population
-    # popUtils = populationUtils.PopulationUtils()
-    # old_fitness, current_population = popUtils.create_population(current_population, populationNum, geneNumber)
-    #
-    # while True:  # Begin stepping towards optimal solution
-    #     new_population, new_fitness = popUtils.high_fitness_evaluation(current_population)
-    #     current_population = new_population
-    #
-    #     print("New fitness: %s Old fitness: %s Epoch: %s" % (new_fitness, old_fitness, epoch))
-    #
-    #     if new_fitness >= old_fitness: # Record the highest fitness seen
-    #         old_fitness = new_fitness
-    #
-    #     if new_fitness >= (populationNum * geneNumber / 4):
-    #         print("Finished in %s epochs\n final fitness %s" % (epoch, new_fitness))
-    #         break
-    #
-    #     epoch += 1
+    #Setup population
     datautils = datautils.dataUtils()
 
-    datautils.read_from_file()
+    rule_list = datautils.read_from_file('/home/will/PycharmProjects/untitled/data/data1.tx')
+    popUtils = populationUtils.PopulationUtils()
+    old_fitness, current_population = popUtils.create_population(current_population, populationNum, geneNumber, rule_list)
+
+    while True:  # Begin stepping towards optimal solution
+        new_population, new_fitness = popUtils.high_fitness_evaluation(current_population, rule_list)
+        current_population = new_population
+
+        print("New fitness: %s Old fitness: %s Epoch: %s" % (new_fitness, old_fitness, epoch))
+
+        if new_fitness >= old_fitness: # Record the highest fitness seen
+            old_fitness = new_fitness
+
+        if new_fitness >= (populationNum * 10):  # Max fitness
+            print("Finished in %s epochs\n final fitness %s" % (epoch, new_fitness))
+            break
+
+        epoch += 1
+
 
 
