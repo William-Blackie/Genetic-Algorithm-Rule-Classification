@@ -11,12 +11,8 @@ class dataUtils():
             all_file_data.append(line)
         file.close()
 
-        for temp_list in all_file_data:
-            if temp_list[len(temp_list) - 1] == '1' and temp_list not in unique_file_data:  # and temp_list not in unique_file_data:
-                unique_file_data.append(temp_list)  # Rule stored as string TODO maybe needed to think about something else
-
-        print("Rules: %s" % (unique_file_data))
-        return unique_file_data
+        print("Rules: %s" % (all_file_data))
+        return all_file_data
 
 
 
