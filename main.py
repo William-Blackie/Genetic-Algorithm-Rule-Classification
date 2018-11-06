@@ -20,7 +20,7 @@ class Main:
     #Setup population
     datautils = datautils.dataUtils()
 
-    rule_list = datautils.read_from_file('/home/will/PycharmProjects/untitled/data/data1.tx')
+    rule_list = datautils.read_from_file('/home/will/PycharmProjects/untitled/data/data2.txt')
     popUtils = populationUtils.PopulationUtils()
     old_fitness, current_population = popUtils.create_population(current_population, populationNum, geneNumber, rule_list)
 
@@ -35,7 +35,7 @@ class Main:
             print("test: %s" % (new_fitness / populationNum))
 
 
-        if new_fitness >= 10 * populationNum:  # Max fitness
+        if new_fitness == 7650:  # Max fitness
             print("Finished in %s epochs\n final fitness %s" % (epoch, new_fitness))
             break
 

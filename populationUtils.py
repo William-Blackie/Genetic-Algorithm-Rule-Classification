@@ -113,13 +113,10 @@ class PopulationUtils:
     def single_point_mutation(self, individual):  # TODO change name?
         index = 0
 
-        while index < len(individual.genes):  # Mutate at each gene
+        while index < len(individual.genes) - 1:  # Mutate at each gene
             mutation_chance = random.uniform(0, 1)
 
             if mutation_chance > self.mutation_rate:
-                if individual.genes[index] == 1:
-                    individual.genes[index] = 0
-                else:
-                    individual.genes[index] = 1
+                individual.genes[index] = random.randint(0, 2)
             index += 1
         return individual

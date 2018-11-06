@@ -28,25 +28,27 @@ class Individual:
         fitness = 0
         total_fitness = 0
 
-        for gene in genes:
+        for gene in genes:  # Section genes based on length of rules
             temp_gene_list.append(gene)
             if len(temp_gene_list) == len(rule_list[0]):
                 gene_list.append(temp_gene_list)
                 temp_gene_list = []
 
-        for index in range(0, len(rule_list)):  # TODO this is trashed
+        wild_card_total = 0
+        for index in range(0, len(rule_list)): # Calculate fitness of genes
             current_rule = rule_list[index]
             for gene in gene_list:
                 for gene_index in range(0, len(gene)):
-                    if gene[gene_index] != current_rule[gene_index] or gene[gene_index] == 2:
+                    if gene[gene_index] != current_rule[gene_index] and gene[gene_index] != 2:
                         break
-                    if gene_index == len(current_rule) - 1:
+                    if gene_index == len(current_rule) - 1 and gene[gene_index] != 2:
                         fitness += 1
+                    if gene[gene_index] == 2:
+                        wild_card_total += 1
+                total_fitness -= wild_card_total
                 total_fitness += fitness
+                wild_card_total = 0
                 fitness = 0
-
-        if total_fitness == 10:
-            print("foob")
 
         self.fitness = total_fitness
         return total_fitness
@@ -55,8 +57,8 @@ class Individual:
         temp_genes = []
         current_gene = 0
 
-        while current_gene < gene_length:
-            temp_genes.append(random.randint(0, 1))
+        while current_gene < gene_length - 1:
+            temp_genes.append(random.randint(0, 2))
             current_gene += 1
         self.genes = temp_genes
 
