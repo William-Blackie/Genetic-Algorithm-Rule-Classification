@@ -1,13 +1,12 @@
 import random
 
+
 class Individual:
     genes = []
     fitness = None
     ID = None
 
     def __init__(self, id):
-        self.genes
-        self.fitness
         self.ID = id
 
     def __str__(self):
@@ -24,28 +23,33 @@ class Individual:
 
     def data_classification_fitness(self, rule_list):
         genes = self.genes
-        gene = ""
-        rule_length = 6
-        counter = 0
         gene_list = []
-
-        for x in genes:
-            counter += 1
-            gene += str(x)
-            if counter == rule_length:
-                gene_list.append(gene)
-                counter = 0
-                gene = ""
-
+        temp_gene_list = []
+        fitness = 0
         total_fitness = 0
 
-        for gene in gene_list:
-            if gene in rule_list:
-                total_fitness += 1
+        for gene in genes:
+            temp_gene_list.append(gene)
+            if len(temp_gene_list) == len(rule_list[0]):
+                gene_list.append(temp_gene_list)
+                temp_gene_list = []
+
+        for index in range(0, len(rule_list)):  # TODO this is trashed
+            current_rule = rule_list[index]
+            for gene in gene_list:
+                for gene_index in range(0, len(gene)):
+                    if gene[gene_index] != current_rule[gene_index] or gene[gene_index] == 2:
+                        break
+                    if gene_index == len(current_rule) - 1:
+                        fitness += 1
+                total_fitness += fitness
+                fitness = 0
+
+        if total_fitness == 10:
+            print("foob")
 
         self.fitness = total_fitness
         return total_fitness
-
 
     def create_genes(self, gene_length):
         temp_genes = []
@@ -59,7 +63,3 @@ class Individual:
     def setup_individual(self, genes, fitness):
         self.genes = genes
         self.fitness = fitness
-
-
-
-

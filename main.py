@@ -32,8 +32,10 @@ class Main:
 
         if new_fitness >= old_fitness: # Record the highest fitness seen
             old_fitness = new_fitness
+            print("test: %s" % (new_fitness / populationNum))
 
-        if new_fitness >= (populationNum * 10):  # Max fitness
+
+        if new_fitness >= 10 * populationNum:  # Max fitness
             print("Finished in %s epochs\n final fitness %s" % (epoch, new_fitness))
             break
 
