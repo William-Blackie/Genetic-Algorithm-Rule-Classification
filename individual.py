@@ -34,18 +34,20 @@ class Individual:
                 gene_list.append(temp_gene_list)
                 temp_gene_list = []
 
-        wild_card_total = 0
+        wild_card_total = 0 # TODO remove wildcard from final fitness?
         for index in range(0, len(rule_list)): # Calculate fitness of genes
             current_rule = rule_list[index]
             for gene in gene_list:
                 for gene_index in range(0, len(gene)):
                     if gene[gene_index] != current_rule[gene_index] and gene[gene_index] != 2:
                         break
-                    if gene_index == len(current_rule) - 1 and gene[gene_index] != 2:
-                        fitness += 1
                     if gene[gene_index] == 2:
                         wild_card_total += 1
-                total_fitness -= wild_card_total
+                        if wild_card_total == len(gene) - 1:
+                            fitness -= 1
+                    if gene_index == len(current_rule) - 1 and gene[gene_index] != 2:
+                        fitness += 1
+                        break
                 total_fitness += fitness
                 wild_card_total = 0
                 fitness = 0

@@ -102,8 +102,8 @@ class PopulationUtils:
         slice_end = 0
 
         while slice_start >= slice_end:
-            slice_start = random.randint(0, 59)
-            slice_end = random.randint(0, 59)
+            slice_start = random.randint(0, 69)
+            slice_end = random.randint(0, 69) # TODO get value from main
 
         # Slice and insert the new genes into parent
         for index in range(slice_start, slice_end):  # TODO make more pythonic fix naming conventions
