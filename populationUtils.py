@@ -11,14 +11,14 @@ class PopulationUtils:
         self.elite_population_number = 3
 
     @staticmethod
-    def create_population(new_population, population_number, gene_number, rule_list):
+    def create_population(new_population, population_number, gene_number, rule_list, rule_classifiers):
         id_number = 0
         current_fitness = 0
 
         while id_number < population_number:
             new_individual = individual.Individual(id_number)
             new_individual.create_genes(gene_number)
-            current_fitness += new_individual.data_classification_fitness(rule_list)
+            current_fitness += new_individual.data_classification_fitness(rule_list, rule_classifiers)
             new_population.append(new_individual)
             id_number += 1
 
@@ -38,7 +38,7 @@ class PopulationUtils:
 
         return temp_individual
 
-    def high_fitness_evaluation(self, population, rules):
+    def high_fitness_evaluation(self, population, rules, rule_classifiers):
         new_pop = []
         new_fitness = 0
         id_number = 0
@@ -79,7 +79,7 @@ class PopulationUtils:
             new_pop.append(copy.deepcopy(elite))  # Append fittest individuals from old pop
 
         for pop in new_pop:
-            new_fitness += pop.data_classification_fitness(rules)  # Calculate fitness
+            new_fitness += pop.data_classification_fitness(rules, rule_classifiers)  # Calculate fitness
 
         new_pop.sort(key=lambda x: x.fitness, reverse=True)  # Sort just for readability TODO remove unnecessary sort
 
@@ -96,14 +96,13 @@ class PopulationUtils:
             if current > pick:
                 return pop
 
-    @staticmethod
-    def single_point_crossover(first_parent, second_parent):
+    def single_point_crossover(self, first_parent, second_parent):
         slice_start = 0
         slice_end = 0
 
         while slice_start >= slice_end:
-            slice_start = random.randint(0, 69)
-            slice_end = random.randint(0, 69) # TODO get value from main
+            slice_start = random.randint(0, len(first_parent.genes) - 1)
+            slice_end = random.randint(0, len(first_parent.genes) - 1) # TODO get value from main
 
         # Slice and insert the new genes into parent
         for index in range(slice_start, slice_end):  # TODO make more pythonic fix naming conventions

@@ -10,20 +10,27 @@ class dataUtils():
             all_file_data.append(line)
         file.close()
 
-        final_genes = self.convert_string_to_genes_list(all_file_data)
-        return final_genes
+        genes, classifiers = self.convert_string_to_genes_list(all_file_data)
+        return genes, classifiers
 
     @staticmethod
     def convert_string_to_genes_list(all_file_data):
-        final_genes = []
-        gene = []
+        final_rules = []
+        rule = []
+        rule_classifier = []
+        index = 0
         for string in all_file_data:
             for x in string:
-                gene.append(int(x))
-            final_genes.append(gene)
-            gene = []
+                if index < len(string) - 1:
+                    index += 1
+                    rule.append(int(x))
+                else:
+                    rule_classifier.append(int(x))
+                    index = 0
+            final_rules.append(rule)
+            rule = []
 
-        return final_genes
+        return final_rules, rule_classifier
 
 
 
