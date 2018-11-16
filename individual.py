@@ -41,32 +41,19 @@ class Individual:
                 temp_gene_list = []
                 gene_index = 0
 
-        # temp_gene = []
-        # for gene in temp_temp_gene_list:
-        #     for index in range(0, len(gene)):
-        #         if index < len(gene) - 1:
-        #             temp_gene.append(gene[index])
-        #         else:
-        #             gene_classifier.append(gene[index])
-        #     gene_list.append(temp_gene)
-        #     temp_gene = []
-
-
-
-        for rule_index in range(0, len(rule_list)): # Calculate fitness of genes
+        for rule_index in range(0, len(rule_list)):  # Calculate fitness of genes
             current_rule = rule_list[rule_index]
             for gene_index in range(0, len(temp_temp_gene_list)):
                 current_gene = temp_temp_gene_list[gene_index]
-                if self.match_cond(current_rule, current_gene) == True:
+                if self.match_cond(current_rule, current_gene):
                     if rule_classifiers[rule_index] == gene_classifier[gene_index]:
-                        print("Rule: %s Gene: %s  Rule class: %s Gene class: %s " % (current_rule, current_gene, rule_classifiers[rule_index], gene_classifier[gene_index]))
                         fitness += 1
                     break
-        print("Genes list: %s" % temp_temp_gene_list)
         self.fitness = fitness
         return fitness
 
-    def match_cond(self, current_rule, current_gene):
+    @staticmethod
+    def match_cond(current_rule, current_gene):
         for x in range(0, len(current_rule)):
             if current_rule[x] != current_gene[x] and current_gene[x] != 2:
                 return False

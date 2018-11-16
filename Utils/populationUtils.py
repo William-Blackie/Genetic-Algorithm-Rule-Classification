@@ -5,10 +5,10 @@ import copy
 
 class PopulationUtils:
 
-    def __init__(self): # TODO maybe make this so main sets this.
-        self.mutation_rate = 0.99863 #0.9979719999999992 # 0.99863 old mutation value, new value from experiment
-        self.crossover_rate = 0.30
-        self.elite_population_number = 3
+    def __init__(self):  # TODO maybe make this so main sets this.
+        self.mutation_rate = 0.99  # 0.9979719999999992 # 0.99863 old mutation value, new value from experiment
+        self.crossover_rate = 0.09
+        self.elite_population_number = 2
 
     @staticmethod
     def create_population(new_population, population_number, gene_number, rule_list, rule_classifiers):
@@ -26,7 +26,6 @@ class PopulationUtils:
 
     @staticmethod
     def tournament_selection(first_parent, second_parent, temp_individual):
-
         if first_parent.fitness >= second_parent.fitness:
             temp_genes = first_parent.genes
             temp_fitness = first_parent.fitness
@@ -100,13 +99,14 @@ class PopulationUtils:
         slice_start = 0
         slice_end = 0
 
-        while slice_start >= slice_end:
-            slice_start = random.randint(0, len(first_parent.genes) - 1)
-            slice_end = random.randint(0, len(first_parent.genes) - 1) # TODO get value from main
+        if random.uniform(0, 1) >= self.crossover_rate:
+            while slice_start >= slice_end:
+                slice_start = random.randint(0, len(first_parent.genes))
+                slice_end = random.randint(0, len(first_parent.genes))  # TODO get value from main
 
-        # Slice and insert the new genes into parent
-        for index in range(slice_start, slice_end):  # TODO make more pythonic fix naming conventions
-            first_parent.genes[index] = second_parent.genes[index]
+            # Slice and insert the new genes into parent
+            for index in range(slice_start, slice_end):  # TODO make more pythonic fix naming conventions
+                first_parent.genes[index] = second_parent.genes[index]
         return first_parent
 
     def single_point_mutation(self, individual):  # TODO change name?
