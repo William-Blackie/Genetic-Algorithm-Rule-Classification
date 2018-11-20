@@ -39,7 +39,7 @@ class dataUtils():
         with open(file_path, 'w') as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=',',
                        quotechar=',', quoting=csv.QUOTE_MINIMAL)
-            csv_writer.writerow(['Average fitness', 'Epoch'])
+            csv_writer.writerow(['Average Epoch', 'Crossover Rate'])
             for x in list:
                 csv_writer.writerow([x[0], x[1]])
 
@@ -49,12 +49,11 @@ class dataUtils():
             with open(file_path, newline='') as csvfile:
                 row_number = 0
                 csv_reader = csv.reader(csvfile, delimiter=',', quotechar=',')
+                next(csv_reader)  # Remove header
                 for row in csv_reader:
                     temp_list = []
-                    if row_number != 0:
-                        temp_list = [float(row[0]), int(row[1])]
-                        list.append(temp_list)
-                    row_number += 1
+                    temp_list = [float(row[0]), float(row[1])]
+                    list.append(temp_list)
             self.write_to_csv(file_path, list)
         else:
             self.write_to_csv(file_path, list)

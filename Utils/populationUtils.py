@@ -6,7 +6,7 @@ import copy
 class PopulationUtils:
 
     def __init__(self):  # TODO maybe make this so main sets this.
-        self.mutation_rate = 0.99  # 0.9979719999999992 # 0.99863 old mutation value, new value from experiment
+        self.mutation_rate = 0.982
         self.crossover_rate = 0.09
         self.elite_population_number = 2
 
@@ -80,7 +80,7 @@ class PopulationUtils:
         for pop in new_pop:
             new_fitness += pop.data_classification_fitness(rules, rule_classifiers)  # Calculate fitness
 
-        new_pop.sort(key=lambda x: x.fitness, reverse=True)  # Sort just for readability TODO remove unnecessary sort
+        new_pop.sort(key=lambda x: x.fitness, reverse=True)
 
         return new_pop, new_fitness
 

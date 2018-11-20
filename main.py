@@ -2,9 +2,9 @@ from Utils import datautils, populationUtils
 
 # values for change
 populationNum = 50
-geneNumber = 40
+geneNumber = 80
 
-#Values for holding population info
+# Values for holding population info
 current_population = []
 new_population = []
 
@@ -15,36 +15,71 @@ epoch = 0
 last_epoch_update = 0
 
 test_values = []
+temp_list = []
+averaged_values = []
+epoch_list = []
+
+total_epoch = 0
+avg_epoch = 0
+
+mutation_rate = 0.982
+crossover_rate = 0.19  # 100% chance
+
 
 class Main:
-    #Setup population
+    # Setup population
     datautils = datautils.dataUtils()
-
-    rule_list, rule_classifiers = datautils.read_from_file('/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/data2.txt')
     popUtils = populationUtils.PopulationUtils()
-    old_fitness, current_population = popUtils.create_population(current_population, populationNum, geneNumber, rule_list, rule_classifiers)
+    rule_list, rule_classifiers = datautils.read_from_file(
+        '/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/data2.txt')
+    index = 10
 
-    while True:  # Begin stepping towards optimal solution
-        new_population, new_fitness = popUtils.high_fitness_evaluation(current_population, rule_list, rule_classifiers)
-        current_population = new_population
+    while crossover_rate < 3.1:
+        crossover_rate += 0.01
+        popUtils.crossover_rate = crossover_rate
+        high_epoch_flag = False
 
+        for x in range(index):
+            current_population = []
+            new_population = []
 
+            old_fitness, current_population = popUtils.create_population(current_population, populationNum, geneNumber,
+                                                                         rule_list, rule_classifiers)
+            epoch = 0
 
+            while True:  # Begin stepping towards optimal solution
+                if high_epoch_flag:
+                    break
+                new_population, new_fitness = popUtils.high_fitness_evaluation(current_population, rule_list,
+                                                                               rule_classifiers)
+                current_population = new_population
+
+                if new_fitness >= old_fitness:  # Record the highest fitness seen
+                    old_fitness = new_fitness
+
+                print("Average fitness: %s" % (new_fitness / populationNum))
+                if new_population[0].fitness >= 64:
+                    print(new_population[0])
+                    test_values.append(epoch)
+                    break
+                if epoch > 3000:
+                    print("crossover rate: %s skipped" % crossover_rate)
+                    break
+
+                epoch += 1
+
+        for x in test_values:
+            total_epoch += x
+        if total_epoch != 0:
+            avg_epoch = total_epoch / len(test_values)
         temp_list = []
-        temp_list.append((new_fitness/populationNum))
-        temp_list.append(epoch)
-        test_values.append(temp_list)
-
-        if new_fitness >= old_fitness: # Record the highest fitness seen
-            old_fitness = new_fitness
-
-        print("Average fitness: %s" % (new_fitness/populationNum))
-        if new_fitness / populationNum >= 64:
-            print(new_population[0])
-            datautils.copy_write_to_csv("/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/test/dataset2_wildcard.csv",test_values)
-            break
-
-        epoch += 1
-
-
-
+        temp_list.append(avg_epoch)
+        temp_list.append(crossover_rate)
+        epoch_list.append(temp_list)
+        datautils.copy_write_to_csv(
+            "/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/test/dataset2_wildcard.csv",
+            epoch_list)
+        avg_epoch = 0
+        total_epoch = 0
+        epoch_list = []
+        test_values = []
