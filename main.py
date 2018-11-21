@@ -2,7 +2,7 @@ from Utils import datautils, populationUtils
 
 # values for change
 populationNum = 50
-geneNumber = 80
+geneNumber = 132
 
 # Values for holding population info
 current_population = []
@@ -22,22 +22,19 @@ epoch_list = []
 total_epoch = 0
 avg_epoch = 0
 
-mutation_rate = 0.982
-crossover_rate = 0.19  # 100% chance
-
+crossover_rate = 0.969
 
 class Main:
     # Setup population
     datautils = datautils.dataUtils()
     popUtils = populationUtils.PopulationUtils()
     rule_list, rule_classifiers = datautils.read_from_file(
-        '/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/data2.txt')
+        '/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/data1.txt')
     index = 10
 
-    while crossover_rate < 3.1:
-        crossover_rate += 0.01
-        popUtils.crossover_rate = crossover_rate
-        high_epoch_flag = False
+    while crossover_rate < 1:
+        crossover_rate += 0.001
+        popUtils.mutation_rate = crossover_rate
 
         for x in range(index):
             current_population = []
@@ -48,21 +45,19 @@ class Main:
             epoch = 0
 
             while True:  # Begin stepping towards optimal solution
-                if high_epoch_flag:
-                    break
                 new_population, new_fitness = popUtils.high_fitness_evaluation(current_population, rule_list,
                                                                                rule_classifiers)
                 current_population = new_population
-
+                #print(new_population[0])
                 if new_fitness >= old_fitness:  # Record the highest fitness seen
                     old_fitness = new_fitness
 
                 print("Average fitness: %s" % (new_fitness / populationNum))
-                if new_population[0].fitness >= 64:
+                if new_population[0].fitness >= 25:
                     print(new_population[0])
                     test_values.append(epoch)
                     break
-                if epoch > 3000:
+                if epoch > 1000:
                     print("crossover rate: %s skipped" % crossover_rate)
                     break
 

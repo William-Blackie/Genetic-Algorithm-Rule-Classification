@@ -39,7 +39,7 @@ class dataUtils():
         with open(file_path, 'w') as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=',',
                        quotechar=',', quoting=csv.QUOTE_MINIMAL)
-            csv_writer.writerow(['Average Epoch', 'Crossover Rate'])
+            csv_writer.writerow(['Average Epoch', 'Mutation rate'])
             for x in list:
                 csv_writer.writerow([x[0], x[1]])
 

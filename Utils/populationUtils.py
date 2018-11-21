@@ -7,7 +7,7 @@ class PopulationUtils:
 
     def __init__(self):  # TODO maybe make this so main sets this.
         self.mutation_rate = 0.982
-        self.crossover_rate = 0.09
+        self.crossover_rate = 0.3
         self.elite_population_number = 2
 
     @staticmethod
