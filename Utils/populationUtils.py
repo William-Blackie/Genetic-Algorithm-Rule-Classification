@@ -1,3 +1,4 @@
+import decimal
 import random
 import individual
 import copy
@@ -11,13 +12,13 @@ class PopulationUtils:
         self.elite_population_number = 2
 
     @staticmethod
-    def create_population(new_population, population_number, gene_number, rule_list, rule_classifiers):
+    def create_population(new_population, population_number, gene_number, rule_list, rule_classifiers, numRules):
         id_number = 0
         current_fitness = 0
 
         while id_number < population_number:
             new_individual = individual.Individual(id_number)
-            new_individual.create_genes(gene_number)
+            new_individual.create_genes(gene_number, numRules)
             current_fitness += new_individual.data_classification_fitness(rule_list, rule_classifiers)
             new_population.append(new_individual)
             id_number += 1
@@ -101,8 +102,8 @@ class PopulationUtils:
 
         if random.uniform(0, 1) >= self.crossover_rate:
             while slice_start >= slice_end:
-                slice_start = random.randint(0, len(first_parent.genes))
-                slice_end = random.randint(0, len(first_parent.genes))  # TODO get value from main
+                slice_start = random.randint(0, len(first_parent.genes) - 1)
+                slice_end = random.randint(0, len(first_parent.genes) - 1)  # TODO get value from main
 
             # Slice and insert the new genes into parent
             for index in range(slice_start, slice_end):  # TODO make more pythonic fix naming conventions
@@ -110,12 +111,12 @@ class PopulationUtils:
         return first_parent
 
     def single_point_mutation(self, individual):  # TODO change name?
-        index = 0
-
-        while index < len(individual.genes) - 1:  # Mutate at each gene
-            mutation_chance = random.uniform(0, 1)
-
-            if mutation_chance > self.mutation_rate:
-                individual.genes[index] = random.randint(0, 2)
-            index += 1
+        for gene in range(len(individual.genes)):
+            for gene_index in range(len(individual.genes[0])):
+                mutation_chance = random.uniform(0, 1) # TODO index into two genes and lower or raise instead of new gene!
+                if mutation_chance > self.mutation_rate:
+                    if gene_index == len(individual.genes) - 1:
+                        individual.genes[gene][gene_index] = random.randint(0, 1)
+                    else:
+                        individual.genes[gene][gene_index] = float(decimal.Decimal(random.randrange(100000, 900000))/1000000)
         return individual

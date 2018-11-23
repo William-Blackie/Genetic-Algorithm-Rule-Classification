@@ -9,7 +9,7 @@ class dataUtils():
         file.readline()  # Remove header
         for line in file:
             line = line.strip()  # Remove new line character
-            line = line.replace(" ", "")
+            #line = line.replace(" ", "")
             all_file_data.append(line)
         file.close()
 
@@ -23,10 +23,11 @@ class dataUtils():
         rule_classifier = []
         index = 0
         for string in all_file_data:
-            for x in string:
-                if index < len(string) - 1:
+            floats = [float(x) for x in string.split()]
+            for x in floats:
+                if index < len(floats) - 1:
                     index += 1
-                    rule.append(int(x))
+                    rule.append(float(x))
                 else:
                     rule_classifier.append(int(x))
                     index = 0

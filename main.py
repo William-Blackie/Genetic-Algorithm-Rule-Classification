@@ -2,7 +2,8 @@ from Utils import datautils, populationUtils
 
 # values for change
 populationNum = 50
-geneNumber = 132
+geneNumber = 14
+numRules = 10
 
 # Values for holding population info
 current_population = []
@@ -29,19 +30,19 @@ class Main:
     datautils = datautils.dataUtils()
     popUtils = populationUtils.PopulationUtils()
     rule_list, rule_classifiers = datautils.read_from_file(
-        '/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/data1.txt')
-    index = 10
+        '/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/data3.txt')
+    index = 1
 
     while crossover_rate < 1:
-        crossover_rate += 0.001
-        popUtils.mutation_rate = crossover_rate
+        #crossover_rate += 0.001
+        #popUtils.mutation_rate = crossover_rate
 
         for x in range(index):
             current_population = []
             new_population = []
 
             old_fitness, current_population = popUtils.create_population(current_population, populationNum, geneNumber,
-                                                                         rule_list, rule_classifiers)
+                                                                         rule_list, rule_classifiers, numRules)
             epoch = 0
 
             while True:  # Begin stepping towards optimal solution
