@@ -48,7 +48,6 @@ class Main:
                 new_population, new_fitness = popUtils.high_fitness_evaluation(current_population, rule_list,
                                                                                rule_classifiers)
                 current_population = new_population
-                #print(new_population[0])
                 if new_fitness >= old_fitness:  # Record the highest fitness seen
                     old_fitness = new_fitness
 
