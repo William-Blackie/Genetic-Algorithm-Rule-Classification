@@ -5,10 +5,10 @@ import copy
 
 class PopulationUtils:
 
-    def __init__(self):  # TODO maybe make this so main sets this.
+    def __init__(self):
         self.mutation_rate = 0.982
         self.crossover_rate = 0.3
-        self.elite_population_number = 2
+        self.elite_population_number = 1
 
     @staticmethod
     def create_population(new_population, population_number, gene_number, rule_list, rule_classifiers):
@@ -114,7 +114,6 @@ class PopulationUtils:
 
         while index < len(individual.genes) - 1:  # Mutate at each gene
             mutation_chance = random.uniform(0, 1)
-
             if mutation_chance > self.mutation_rate:
                 individual.genes[index] = random.randint(0, 2)
             index += 1

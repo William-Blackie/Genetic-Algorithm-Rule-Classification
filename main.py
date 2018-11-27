@@ -2,7 +2,12 @@ from Utils import datautils, populationUtils
 
 # values for change
 populationNum = 50
-geneNumber = 132
+geneNumber = 192
+
+crossover_rate = 0.7
+mutation_rate = 0.989
+
+index = 1  # Number of runs to average across
 
 # Values for holding population info
 current_population = []
@@ -22,7 +27,6 @@ epoch_list = []
 total_epoch = 0
 avg_epoch = 0
 
-crossover_rate = 0.969
 
 class Main:
     # Setup population
@@ -30,11 +34,9 @@ class Main:
     popUtils = populationUtils.PopulationUtils()
     rule_list, rule_classifiers = datautils.read_from_file(
         '/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/data1.txt')
-    index = 10
 
-    while crossover_rate < 1:
-        crossover_rate += 0.001
-        popUtils.mutation_rate = crossover_rate
+    while geneNumber > 0:
+        geneNumber - 6
 
         for x in range(index):
             current_population = []
@@ -52,23 +54,25 @@ class Main:
                     old_fitness = new_fitness
 
                 print("Average fitness: %s" % (new_fitness / populationNum))
-                if new_population[0].fitness >= 25:
+                if new_population[0].fitness >= 32:
                     print(new_population[0])
                     test_values.append(epoch)
-                    break
-                if epoch > 1000:
-                    print("crossover rate: %s skipped" % crossover_rate)
                     break
 
                 epoch += 1
 
+        total_epoch = 0
         for x in test_values:
             total_epoch += x
         if total_epoch != 0:
-            avg_epoch = total_epoch / len(test_values)
+            avg_epoch = total_epoch / index
+
+        avg_fitness = new_fitness / populationNum
         temp_list = []
+        temp_list.append(avg_fitness)
         temp_list.append(avg_epoch)
-        temp_list.append(crossover_rate)
+        temp_list.append(new_population[0].fitness)
+        temp_list.append(mutation_rate)
         epoch_list.append(temp_list)
         datautils.copy_write_to_csv(
             "/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/test/dataset2_wildcard.csv",
