@@ -7,7 +7,7 @@ import copy
 class PopulationUtils:
 
     def __init__(self):  # TODO maybe make this so main sets this.
-        self.mutation_rate = 0.982
+        self.mutation_rate = 0.99
         self.crossover_rate = 0.3
         self.elite_population_number = 2
 
@@ -54,8 +54,8 @@ class PopulationUtils:
 
         while id_number < len(population):  # Tournament select new pop
             temp_individual = individual.Individual(id_number)
-            temp_individual = self.tournament_selection(copy.deepcopy(population[random.randint(0, 49)]),
-                                                        copy.deepcopy(population[random.randint(0, 49)]),
+            temp_individual = self.tournament_selection(copy.deepcopy(population[random.randint(0, len(population) - 1)]),
+                                                        copy.deepcopy(population[random.randint(0, len(population) - 1)]),
                                                         temp_individual)
             new_pop.append(temp_individual)
             id_number += 1
@@ -113,10 +113,14 @@ class PopulationUtils:
     def single_point_mutation(self, individual):  # TODO change name?
         for gene in range(len(individual.genes)):
             for gene_index in range(len(individual.genes[0])):
-                mutation_chance = random.uniform(0, 1) # TODO index into two genes and lower or raise instead of new gene!
+                mutation_chance = random.uniform(0, 1)
                 if mutation_chance > self.mutation_rate:
-                    if gene_index == len(individual.genes) - 1:
+                    if gene_index == 14:
                         individual.genes[gene][gene_index] = random.randint(0, 1)
                     else:
-                        individual.genes[gene][gene_index] = float(decimal.Decimal(random.randrange(100000, 900000))/1000000)
+                        individual.genes[gene][gene_index] += random.uniform(-0.2, 0.2)
+                        if individual.genes[gene][gene_index] > 1:
+                            individual.genes[gene][gene_index] = 1.0
+                        if individual.genes[gene][gene_index] < 0:
+                            individual.genes[gene][gene_index] = 0.0
         return individual

@@ -24,10 +24,6 @@ class Individual:
 
     def data_classification_fitness(self, rule_list, rule_classifiers):
         genes = self.genes
-        gene_list = []
-        temp_temp_gene_list =[]
-        gene_classifier = []
-        temp_gene_list = []
         fitness = 0
 
         for rule_index in range(0, len(rule_list)):  # Calculate fitness of genes
@@ -35,7 +31,7 @@ class Individual:
             for gene_index in range(len(genes)):
                 current_gene = genes[gene_index]
                 if self.match_cond(current_rule, current_gene):
-                    if rule_classifiers[rule_index] == current_gene[14]:
+                    if float(rule_classifiers[rule_index]) == float(current_gene[14]):
                         fitness += 1
                     break
         self.fitness = fitness
@@ -48,7 +44,7 @@ class Individual:
             gene1 = current_gene[gene_index]
             gene2 = current_gene[gene_index + 1]
             rule = current_rule[x]
-            if gene1 <= rule or rule >= gene2:
+            if gene1 >= rule or rule >= gene2:
                 return False
             gene_index + 2
         return True
@@ -57,13 +53,13 @@ class Individual:
         temp_genes = []
         current_gene = 0
         full_genes = []
-        for x in range(0, 10):
+        for x in range(num_rules):
             while current_gene < gene_length:
                 temp1 = 0
                 temp2 = 0
                 while temp1 >= temp2:
-                    temp1 = float(decimal.Decimal(random.randrange(100000, 900000))/1000000)
-                    temp2 = float(decimal.Decimal(random.randrange(100000, 900000))/1000000)
+                    temp1 = float(decimal.Decimal(random.randrange(100000, 900000)) / 1000000)
+                    temp2 = float(decimal.Decimal(random.randrange(100000, 900000)) / 1000000)
 
                 temp_genes.append(temp1)
                 temp_genes.append(temp2)
