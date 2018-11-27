@@ -1,3 +1,7 @@
+import csv
+import os
+
+
 class dataUtils():
 
     def read_from_file(self, path):
@@ -14,5 +18,45 @@ class dataUtils():
         print("Rules: %s" % (all_file_data))
         return all_file_data
 
+    @staticmethod
+    def convert_string_to_genes_list(all_file_data):
+        final_rules = []
+        rule = []
+        rule_classifier = []
+        index = 0
+        for string in all_file_data:
+            floats = [float(x) for x in string.split()]
+            for x in floats:
+                if index < len(floats) - 1:
+                    index += 1
+                    rule.append(float(x))
+                else:
+                    rule_classifier.append(int(x))
+                    index = 0
+            final_rules.append(rule)
+            rule = []
+
+        return final_rules, rule_classifier
+
+    def write_to_csv(self, file_path, list):
+        with open(file_path, 'w') as csvfile:
+            csv_writer = csv.writer(csvfile, delimiter=',',
+                       quotechar=',', quoting=csv.QUOTE_MINIMAL)
+            csv_writer.writerow(['Average Epoch', 'Average Fitness', 'rule length', 'Mutation Rate'])
+            for x in list:
+                csv_writer.writerow([x[0], x[1], x[2], x[3]])
 
 
+    def copy_write_to_csv(self, file_path, list):
+        if os.stat(file_path).st_size != 0:
+            with open(file_path, newline='') as csvfile:
+                row_number = 0
+                csv_reader = csv.reader(csvfile, delimiter=',', quotechar=',')
+                next(csv_reader)  # Remove header
+                for row in csv_reader:
+                    temp_list = []
+                    temp_list = [float(row[0]), float(row[1]), float(row[2]), float(row[3])]
+                    list.append(temp_list)
+            self.write_to_csv(file_path, list)
+        else:
+            self.write_to_csv(file_path, list)
