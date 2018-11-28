@@ -5,6 +5,10 @@ populationNum = 50
 geneNumber = 14
 numRules = 15
 
+
+crossover_rate = 0.70  # Requires changes in code
+mutation_rate = 0.89
+
 # Values for holding population info
 current_population = []
 new_population = []
@@ -22,9 +26,6 @@ epoch_list = []
 
 total_epoch = 0
 avg_epoch = 0
-
-crossover_rate = 0.70
-mutation_rate = 0.89
 
 class Main:
     # Setup population
