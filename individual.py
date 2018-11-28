@@ -36,6 +36,8 @@ class Individual:
                 gene_index += 1
             else:
                 gene_index == len(rule_list[0])
+                if genes[gene] == 2:
+                    self.genes[gene] = random.randint(0, 1)
                 gene_classifier.append(genes[gene])
                 temp_temp_gene_list.append(temp_gene_list)
                 temp_gene_list = []

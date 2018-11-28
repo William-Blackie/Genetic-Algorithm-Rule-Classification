@@ -2,12 +2,12 @@ from Utils import datautils, populationUtils
 
 # values for change
 populationNum = 50
-geneNumber = 192
+geneNumber = 140
 
 crossover_rate = 0.7
 mutation_rate = 0.989
 
-index = 1  # Number of runs to average across
+index = 5  # Number of runs to average across
 
 # Values for holding population info
 current_population = []
@@ -33,10 +33,10 @@ class Main:
     datautils = datautils.dataUtils()
     popUtils = populationUtils.PopulationUtils()
     rule_list, rule_classifiers = datautils.read_from_file(
-        '/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/data1.txt')
+        '/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/data2.txt')
 
-    while geneNumber > 0:
-        geneNumber - 6
+    while populationNum < 100:
+        populationNum += 1
 
         for x in range(index):
             current_population = []
@@ -54,7 +54,7 @@ class Main:
                     old_fitness = new_fitness
 
                 print("Average fitness: %s" % (new_fitness / populationNum))
-                if new_population[0].fitness >= 32:
+                if new_population[0].fitness >= 64:
                     print(new_population[0])
                     test_values.append(epoch)
                     break
@@ -72,7 +72,7 @@ class Main:
         temp_list.append(avg_fitness)
         temp_list.append(avg_epoch)
         temp_list.append(new_population[0].fitness)
-        temp_list.append(mutation_rate)
+        temp_list.append(populationNum)
         epoch_list.append(temp_list)
         datautils.copy_write_to_csv(
             "/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/test/dataset2_wildcard.csv",
