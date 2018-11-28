@@ -9,7 +9,7 @@ class PopulationUtils:
     def __init__(self):  # TODO maybe make this so main sets this.
         self.mutation_rate = 0.99
         self.crossover_rate = 0.3
-        self.elite_population_number = 2
+        self.elite_population_number = 1
 
     @staticmethod
     def create_population(new_population, population_number, gene_number, rule_list, rule_classifiers, numRules):

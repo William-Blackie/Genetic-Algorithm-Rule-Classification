@@ -3,7 +3,7 @@ from Utils import datautils, populationUtils
 # values for change
 populationNum = 50
 geneNumber = 14
-numRules = 24
+numRules = 15
 
 # Values for holding population info
 current_population = []
@@ -23,8 +23,8 @@ epoch_list = []
 total_epoch = 0
 avg_epoch = 0
 
-crossover_rate = 0.969
-mutation_rate = 0.0
+crossover_rate = 0.70
+mutation_rate = 0.89
 
 class Main:
     # Setup population
@@ -32,13 +32,12 @@ class Main:
     popUtils = populationUtils.PopulationUtils()
     rule_list, rule_classifiers = datautils.read_from_file(
         '/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/data3.txt')
-    index = 5
+    index = 1
     popUtils.mutation_rate = mutation_rate
 
-    while mutation_rate < 1:
-        #crossover_rate += 0.001
-
-        mutation_rate += 0.1
+    while populationNum < 100:
+        populationNum += 1
+        #mutation_rate += 0.1
 
         for x in range(index):
             current_population = []
@@ -60,7 +59,7 @@ class Main:
                 print(epoch, new_population[0])
 
                 #     break
-                if epoch == 100:
+                if epoch == 200:
                     print("crossover rate: %s skipped" % crossover_rate)
                     test_values.append(epoch)
                     #test_values.append(numRules)
@@ -78,7 +77,7 @@ class Main:
         temp_list.append(avg_fitness)
         temp_list.append(avg_epoch)
         temp_list.append(new_population[0].fitness)
-        temp_list.append(mutation_rate)
+        temp_list.append(populationNum)
         epoch_list.append(temp_list)
         datautils.copy_write_to_csv(
             "/home/william/Projects/University/Genetic-Algorithm-Rule-Classification/data/test/dataset2_wildcard.csv",
